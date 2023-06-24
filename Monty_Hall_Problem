@@ -1,0 +1,74 @@
+import random
+
+def play_slot_machine(bet, scale_up): #function to play - takes into account the amount of bet and whether or not it will be scaled
+    
+    prize = random.random()
+    if scale_up:
+        prize *= 5  # if scale up is set to "True", scale bet by 5X
+    
+    return prize * bet
+
+def simulate_game(num_rounds, bet, scale_up): #function to simulate play
+    total_winnings = 0
+
+    for i in range(num_rounds):
+        total_winnings += play_slot_machine(bet, scale_up)
+
+    return total_winnings
+
+num_rounds = 10
+bet = 0.2
+scale_up = True
+
+# Simulate playing X five times
+winnings_no_scale = simulate_game(num_rounds, bet, False)
+
+# Simulate playing 5X at once
+winnings_with_scale = play_slot_machine(bet * num_rounds, scale_up)
+
+# Calculate expected return and risk
+expected_return_no_scale = winnings_no_scale / num_rounds
+expected_return_with_scale = winnings_with_scale / num_rounds
+
+risk_no_scale = (winnings_no_scale - expected_return_no_scale) ** 2 / num_rounds
+risk_with_scale = (winnings_with_scale - expected_return_with_scale) ** 2 / num_rounds
+
+# Compare the results
+print("Expected Return of 5 x 20c bets:", expected_return_no_scale)
+print("Expected Return of $1 bet:", expected_return_with_scale)
+print("Risk (Variance) of 5 x 20c bets:", risk_no_scale)
+print("Risk (Variance) of $1 bets:", risk_with_scale)
+import random
+
+# Define the number of simulations and initialize the win counts for each strategy
+num_simulations = 100000
+stay_wins = 0
+switch_wins = 0
+
+# Run the simulations
+for i in range(num_simulations):
+    # Randomly assign the car behind one of the three doors
+    doors = ["goat", "goat", "car"]
+    random.shuffle(doors)
+    
+    # Contestant picks a door
+    contestant_choice = random.choice(doors)
+    
+    # Host opens one of the other doors to reveal a goat
+    available_doors = [door for door in doors if door != contestant_choice]
+    goat_doors = [door for door in available_doors if door == "goat"]
+    if goat_doors:
+        host_choice = random.choice(goat_doors)
+    else:
+        # In the rare case where both unselected doors have cars, open a random door
+        host_choice = random.choice(available_doors)
+    
+    # Check if the contestant wins by staying or switching
+    if contestant_choice == "car":
+        stay_wins += 1
+    elif available_doors[0] == "car":
+        switch_wins += 1
+
+# Print the results
+print("Wins if staying: ", stay_wins)
+print("Wins if switching: ", switch_wins)
