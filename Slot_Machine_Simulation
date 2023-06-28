@@ -1,3 +1,6 @@
+#Proof its better to make 5 x $0.20 bets over 1 x $1 bet. Expected value of the bet is the same in both instances
+#However, the variance is less for the 5 x $0.20 bets, therefore minimising risk and becoming the preferred betting method.
+
 import random
 
 def play_slot_machine(bet, scale_up): #function to play - takes into account the amount of bet and whether or not it will be scaled
