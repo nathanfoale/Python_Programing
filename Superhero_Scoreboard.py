@@ -1,13 +1,10 @@
 #
-# File: assignment2
+# File: Superhero_Scoreboard.py
 # Author: Nathan Foale
-# Email Id: foany001
-# Description: Assignment 2 – This is about the battle game between heroes and villains. There will be summary table which 
+# Description:This is about the battle game between heroes and villains. There will be summary table which 
 #                           includes the information of battles fought, battles won, battles lost, battles drawn, and a health value.
 #                           Everytime,if there are batlles or any changes in the character members. the summary table will be automatically updated.
-# This is my own work as defined by the University's
-# Academic Misconduct policy.
-#
+
 import random
 
 # Reading characters file.
